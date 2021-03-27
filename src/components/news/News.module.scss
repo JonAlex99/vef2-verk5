@@ -1,0 +1,22 @@
+.card {
+    &__theme {
+        background-color: rgba(247, 201, 51, 0.219);
+        padding: 0.1rem 1rem;
+        border-radius: 1rem;
+        border-style: groove;
+    }
+
+    &__content a {
+        color: black;
+    }
+
+    dl:last-of-type {
+        margin-top: 1rem;
+        font-weight: bold;
+    }
+
+    &__bottomLink a{
+        color: black;
+        text-decoration: none;
+    }
+}

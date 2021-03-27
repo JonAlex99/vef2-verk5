@@ -1,0 +1,12 @@
+.cardList {
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    &__item {
+        width: 31%;
+        margin: 0.6rem;
+        min-height: 100%;
+    }
+}

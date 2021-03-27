@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import dotenv from 'dotenv';
 import { News } from '../news/News';
 
+import s from './NewsList.module.scss';
+
 dotenv.config();
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -55,15 +57,16 @@ export function NewsList() {
   const newsList = (data && data) || [];
 
   return (
-    <section>
-      <div>
+    <section className={s.cardList}>
+      <div className={s.cardList__list}>
         {newsList.map((item) => {
 
           return (
-            <div>
+            <div className={s.cardList__item}>
               <News
                 id={item.id}
                 limit={5}
+                url={item.id}
               />
             </div>
           )

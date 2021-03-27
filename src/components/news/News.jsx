@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 import dotenv from 'dotenv';
 
+import s from './News.module.scss';
+import { Link } from 'react-router-dom';
+
 dotenv.config();
 
 const apiUrl = process.env.REACT_APP_API_URL;
@@ -9,9 +12,10 @@ const apiUrl = process.env.REACT_APP_API_URL;
 News.propTypes = {
   limit: PropTypes.number,
   id: PropTypes.string.isRequired,
+  url: PropTypes.string,
 }
 
-export function News({ id, limit = -1 }) {
+export function News({ id, limit = -1, url }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(null);
@@ -54,20 +58,21 @@ export function News({ id, limit = -1 }) {
       <p>Sæki gögn...</p>
     );
   }
-
   const news = (data && data.items) || [];
+  const head = (data && data.title) || [];
 
   return(
-    <section>
-      <div>
-        <dl>
+    <section className={s.card}>
+      <div className={s.card__theme}>
+        <dl className={s.card__content}>
+          <h1>{head}</h1>
         {news.slice(0, limit).map((line) => {
           return (
             <dt><a href={line.link}>{line.title}</a></dt>
           );
         })}
         </dl>
-        <dl>Til baka</dl>
+        <dl className={s.card__bottomLink}>{url ? <Link to={`/${url}`}>Allar frettir</Link> : <Link to='/'>Til baka</Link>}</dl>
       </div>
     </section>
   )
